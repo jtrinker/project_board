@@ -1,2 +1,27 @@
-<h1>Dashboards#show</h1>
-<p>Find me in app/views/dashboards/show.html.erb</p>
+<h1><%= current_user.name %>'s Project Board</h1>
+
+<div class="new-project-form">
+	<h3>Add a new project:</h3>
+	<%= form_for @project do |form| %>
+	  <%= form.text_field :name, placeholder: 'Name your project!' %>
+	  <%= form.submit 'Create' %>
+	<% end %>
+</div><!-- new-project-form -->
+
+<br />
+<h3>Projects created by me:</h3>
+<div class="user-project-list">
+  <% if @my_projects.blank? %>
+  	<p>You have not created any projects</p>
+  <% else %>
+    <% @my_projects.each do |project| %>
+    	<%= project.name %>
+    <% end %>
+  <% end %>
+</div><!-- user-project-list -->
+
+<br />
+<h3>All projects:</h3>
+<div class="total-project-list">
+  <%= render @all_projects %>
+</div><!-- user-project-list -->

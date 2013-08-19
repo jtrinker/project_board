@@ -1,4 +1,7 @@
 ProjectBoard::Application.routes.draw do
+  get "projects/index"
+  get "projects/new"
+  get "projects/show"
   devise_for :users
   root "homes#index"
 
@@ -7,4 +10,5 @@ ProjectBoard::Application.routes.draw do
   # have been /dashboards/:id. And a dashboard doesn't have an id
   # if an object doesn't have an :id than its a singleton resource
   resource :dashboard, only: [:show]
+  resources :projects, only: [:show, :index, :create]
 end
