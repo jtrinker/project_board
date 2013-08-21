@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   	# creates a new project object by passing in the permitted parameters
   	# through the project_parameters method, and then 
   	# assigns the project to the current_user
-  	@project = Project.create(project_parameters.merge(user: current_user))
+  	@project = current_user.projects.new(project_parameters)
 
   	if @project.save
   		flash.notice = "Project added!"
